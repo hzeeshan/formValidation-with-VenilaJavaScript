@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Form Validation with JavaScript</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="text-primary text-center mt-5">
+        Form Validation With JavaScript
+      </h1>
+      <br />
+
+      <div class="m-auto d-block col-md-8">
+        <form onsubmit="return validate()">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" />
+            <strong>
+              <span class="text-danger" id="DisplayNameError"></span>
+            </strong>
+          </div>
+          <div class="form-group">
+            <label for="name">Password</label>
+            <input
+              type="text"
+              class="form-control"
+              id="password"
+              autocomplete="off"
+            />
+            <strong>
+              <span class="text-danger" id="DisplayPasswordError"></span>
+            </strong>
+          </div>
+          <div class="form-group">
+            <label for="name">Confirm Password</label>
+            <input
+              type="text"
+              class="form-control"
+              id="confirm-password"
+              autocomplete="off"
+            />
+            <strong>
+              <span class="text-danger" id="Display-CP-Error"></span
+            ></strong>
+          </div>
+          <div class="form-group">
+            <label for="name">Email</label>
+            <input
+              type="text"
+              class="form-control"
+              id="email"
+              autocomplete="off"
+            />
+            <strong>
+              <span class="text-danger" id="DisplayEmailError"></span
+            ></strong>
+          </div>
+          <div class="form-group">
+            <label for="name">Mobile Number</label>
+            <input
+              type="text"
+              class="form-control"
+              id="mobileNumber"
+              autocomplete="off"
+            />
+            <strong>
+              <span class="text-danger" id="Display-MN-Error"></span
+            ></strong>
+          </div>
+          <input
+            type="submit"
+            class="btn btn-primary btn-block"
+            value="Submit"
+          />
+        </form>
+      </div>
+    </div>
+
+    <script>
+      function validate() {
+        var name = document.getElementById("name").value;
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("confirm-password").value;
+        var email = document.getElementById("email").value;
+        var mobileNumber = document.getElementById("mobileNumber").value;
+
+        if (name == "") {
+          document.getElementById("DisplayNameError").innerHTML =
+            "** Name can not be empty";
+          return false;
+        } else if (name.length <= 2 || name.length >= 20) {
+          document.getElementById("DisplayNameError").innerHTML =
+            "** Name must Greater then 3 Characters & less then 20 Characters";
+          return false;
+        } else if (password.length <= 5) {
+          document.getElementById("DisplayPasswordError").innerHTML =
+            "** Your Password must be Greater then 5 Characters";
+          return false;
+        } else if (password != confirmPassword) {
+          document.getElementById("Display-CP-Error").innerHTML =
+            "** Your Passowrd Does not match ";
+          return false;
+        } else if (email == "") {
+          document.getElementById("DisplayEmailError").innerHTML =
+            "** Email Can't be empty ";
+          return false;
+        } else if (email.indexOf("@") <= 0) {
+          document.getElementById("DisplayEmailError").innerHTML =
+            "** Wrong Email Address @ can't be at the begning ";
+          return false;
+        } else if (
+          email.charAt(email.length - 4) != "." &&
+          email.charAt(email.length - 3) != "."
+        ) {
+          document.getElementById("DisplayEmailError").innerHTML =
+            "** Wrong Email Address. Must be 3 or 2 Characters after ' . ' ";
+          return false;
+        } else if (isNaN(mobileNumber)) {
+          document.getElementById("Display-MN-Error").innerHTML =
+            "** Mobile Number must be a number not a Text ";
+          return false;
+        } else if (mobileNumber == "") {
+          document.getElementById("Display-MN-Error").innerHTML =
+            "** Mobile Number Can't be Empty ";
+          return false;
+        }
+      }
+    </script>
+  </body>
+</html>
